@@ -225,6 +225,26 @@ button:disabled{cursor:default}
 }
 @media(max-width:370px){.optics-view .title-block h1{font-size:29px}.optics-label{font-size:9px}.optics-view .model{height:510px}.optics-comparison .model{height:585px}.optics-ri{gap:25px}#opticsComparisonCopy h3{font-size:15px}#opticsComparisonCopy p{font-size:8px}.optics-view-links{gap:10px}.optics-view-links .sound-link{font-size:10px}}
 
+/* Optical polish: pearl enamel, floating RI cues, restrained museum-lighting. */
+.optics-view .model:before{content:'';position:absolute;inset:7% 4% 19%;pointer-events:none;background:radial-gradient(ellipse at 52% 42%,rgba(255,255,255,.62),rgba(222,229,226,.19) 34%,rgba(246,244,238,0) 72%);filter:blur(14px);opacity:.92}
+.optics-view .viewport{filter:drop-shadow(0 18px 26px rgba(55,64,57,.08))}
+.optics-material-tag{position:absolute;z-index:4;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .45s ease,transform .45s ease;color:#69746d;font-size:9px;line-height:1.25;letter-spacing:1.15px;text-transform:uppercase;text-align:left;text-shadow:0 1px 0 rgba(246,244,238,.9)}
+.optics-material-tag strong{display:block;margin-top:3px;font:500 13px/1.15 var(--sans);letter-spacing:.15px;text-transform:none;color:#46554d;font-variant-numeric:tabular-nums}
+.optics-material-tag:after{content:'';position:absolute;top:11px;width:34px;height:1px;background:linear-gradient(90deg,rgba(126,139,132,.58),rgba(126,139,132,.06))}
+#riEnamelTag{right:2%;top:31%;padding-right:43px;text-align:right}#riEnamelTag:after{right:0;transform:scaleX(-1)}
+#riWaterTag{right:2%;top:54%;padding-right:43px;text-align:right}#riWaterTag:after{right:0;transform:scaleX(-1)}
+#riAirTag{right:2%;top:64%;padding-right:43px;text-align:right}#riAirTag:after{right:0;transform:scaleX(-1)}
+.optics-interface-badge{position:absolute;left:4%;top:50%;z-index:5;pointer-events:none;opacity:0;transform:translateY(5px);transition:opacity .35s ease,transform .35s ease;color:#6b746c;font-size:9px;letter-spacing:.65px;line-height:1.55;text-transform:uppercase}
+.optics-interface-badge strong{display:block;color:#4b5b51;font:500 14px/1.25 var(--sans);letter-spacing:.15px;text-transform:none;font-variant-numeric:tabular-nums}
+.optics-interface-badge span{display:block;color:#9a8358;margin-top:4px;font-size:10px;letter-spacing:.3px;text-transform:none}
+.optics-interface-badge.active{opacity:1;transform:none}.optics-interface-badge.active strong{animation:riPulse 1.65s ease-in-out infinite}
+@keyframes riPulse{0%,100%{text-shadow:0 0 0 rgba(204,179,116,0)}50%{text-shadow:0 0 12px rgba(204,179,116,.42)}}
+#opticsComparisonCopy>div{position:relative;padding-top:12px}#opticsComparisonCopy>div:before{content:'';position:absolute;left:19%;right:19%;top:0;height:1px;background:linear-gradient(90deg,transparent,#cbd1c8,transparent)}
+#opticsComparisonCopy strong{display:inline-block;margin:7px 0 3px;font-size:9px;letter-spacing:1.2px;font-weight:600;color:#687569}
+#opticsComparisonCopy>div:nth-child(2) strong{color:#8c744d}
+.optics-ri>div{transition:opacity .35s ease,transform .35s ease}.optics-ri>div.ri-active{transform:translateY(-2px)}.optics-ri>div.ri-active strong{color:#8e7448;text-shadow:0 0 10px rgba(194,164,102,.16)}
+@media(max-width:900px){.optics-material-tag{font-size:8px}.optics-material-tag strong{font-size:11px}#riEnamelTag,#riWaterTag,#riAirTag{right:0}.optics-interface-badge{left:0;top:49%;font-size:8px}.optics-interface-badge strong{font-size:12px}.optics-view .model:before{inset:8% 0 23%}}
+
 </style></head><body data-state="0"><div class="page">
 <noscript><p class="no-script">Enable JavaScript to explore the three-dimensional tooth and caries stages.</p></noscript>
 <header class="topbar"><div class="wordmark">Dental education</div><div class="top-right"><span class="edition">An interactive introduction</span><button class="fullscreen" id="fullscreen" aria-label="Enter fullscreen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 2H2V7M13 2H18V7M18 13V18H13M7 18H2V13"/></svg></button></div></header>
@@ -237,8 +257,8 @@ button:disabled{cursor:default}
   <div class="annotation biofilm-label" id="biofilmLabel"><strong>Dental biofilm</strong><span>Localized deposit</span></div>
   <div class="hist-context" id="histContext" hidden>Intact surface</div><div class="hist-context" id="histSoundContext" hidden>Sound enamel</div>
   <div class="atlas-orientation" id="atlasOrientation" hidden>Surface → advancing front</div>
-  <div id="opticsLabels" hidden><span id="opticsBeam" class="optics-label">Incoming light</span><span id="opticsSurface" class="optics-label">Relatively intact outer surface</span><span id="opticsRegion" class="optics-label">Dense mineral structure</span></div>
-  <div id="opticsComparisonCopy" hidden><div><h3>Healthy enamel</h3><p>Dense mineral · Low porosity</p><p>Relatively uniform RI</p><p>Less scattering · Translucent</p></div><div><h3>White-spot lesion</h3><p>Subsurface mineral loss · More pores</p><p>Enamel ↔ water / air interfaces</p><p>More scattering · Chalky white</p></div><span class="equal-beam-note">Identical incoming light on both sides</span></div>
+  <div id="opticsLabels" hidden><span id="opticsBeam" class="optics-label">Incoming light</span><span id="opticsSurface" class="optics-label">Relatively intact outer surface</span><span id="opticsRegion" class="optics-label">Dense mineral structure</span><span id="riEnamelTag" class="optics-material-tag">Enamel<strong>RI ≈ 1.62</strong></span><span id="riWaterTag" class="optics-material-tag">Water<strong>RI ≈ 1.33</strong></span><span id="riAirTag" class="optics-material-tag">Air<strong>RI ≈ 1.00</strong></span><span id="riInterface" class="optics-interface-badge">Interface<strong id="riPair">1.62 ↔ 1.33</strong><span>ΔRI ↑ → scattering ↑</span></span></div>
+  <div id="opticsComparisonCopy" hidden><div><h3>Healthy enamel</h3><p>Dense mineral · Low porosity</p><p>RI relatively uniform · Light mostly passes through</p><strong>LOW SCATTERING</strong><p>Translucent</p></div><div><h3>White-spot lesion</h3><p>Subsurface mineral loss · Porosity ↑</p><p>Enamel ↔ water / air interfaces</p><strong>HIGH SCATTERING</strong><p>Chalky white</p></div><span class="equal-beam-note">Same incident light direction on both sides</span></div>
   <div id="dentinLabels" hidden><span class="anatomy-label" id="anatomy0">Enamel</span><span class="anatomy-label" id="anatomy1">DEJ</span><span class="anatomy-label" id="anatomy2">Dentin</span><span class="anatomy-label" id="anatomy3">Pulp</span></div>
   <figcaption class="model-tools"><div id="opticsFigureCopy" hidden><p id="opticsCaption"></p><span>Mineral structure → Optical response</span></div><p class="atlas-caption" id="atlasCaption" hidden></p><p class="atlas-anatomy-key" id="atlasAnatomyKey" hidden></p><p class="gesture">Drag to rotate · Scroll to zoom</p><div class="view-tools"><button id="rotation" aria-pressed="true"><span class="rotate-icon" aria-hidden="true">Ⅱ</span><span id="rotationText">Pause rotation</span></button><span class="divider"></span><button id="reset">Reset view</button></div></figcaption>
   <div class="loading" id="loading" role="status">Preparing the anatomical model…</div>
@@ -254,7 +274,7 @@ button:disabled{cursor:default}
  <div class="optics-ri" aria-label="Approximate refractive indices"><div><i class="ri-enamel"></i><span>Enamel<strong>1.62</strong></span></div><div><i class="ri-water"></i><span>Water<strong>1.33</strong></span></div><div><i class="ri-air"></i><span>Air<strong>1.00</strong></span></div><small>Refractive index, RI ≈</small></div>
  <div class="optics-copy" aria-live="polite" aria-atomic="true"><p id="opticsNumber" class="atlas-copy-number">01 / 06</p><h2 id="opticsTitle" tabindex="-1">Healthy enamel</h2><p id="opticsText">Dense hydroxyapatite crystals with very low porosity.</p></div>
  <div id="opticsEquation" hidden aria-label="Mineral loss leads to increased porosity, refractive-index mismatch, light scattering and white appearance"><span>Mineral loss</span><b>→</b><span>Porosity ↑</span><b>→</b><span>RI mismatch ↑</span><b>→</b><span>Scattering ↑</span><b>→</b><span>White appearance</span></div>
- <div class="mineral-control"><label for="mineralization">Mineralization <span id="mineralizationValue">Healthy</span></label><input id="mineralization" type="range" min="0" max="100" step="1" value="0" aria-valuetext="Healthy enamel"><div class="mineral-endpoints"><span>Healthy</span><span>Demineralized</span></div></div>
+ <div class="mineral-control"><label for="mineralization">Mineralization <span id="mineralizationValue">Healthy</span></label><input id="mineralization" type="range" min="0" max="100" step="1" value="0" aria-valuetext="Healthy enamel"><div class="mineral-endpoints"><span>Healthy</span><span>White spot</span></div></div>
  <div class="pore-medium"><span>Pore contents</span><div role="group" aria-label="Pore medium"><button id="poreWater" aria-pressed="true">Water / wet</button><button id="poreAir" aria-pressed="false">Air / dry</button></div></div><p id="poreMediumNote">Water-filled pores → enamel / water interfaces</p>
  <button id="playOptics" class="hist-play"><span id="opticsPlaySymbol" aria-hidden="true">▶</span><span id="playOpticsText">Start demineralization</span></button>
  <div id="opticsTrack" class="hist-track" hidden aria-hidden="true"><span id="opticsFill"></span></div>
@@ -1028,25 +1048,40 @@ function opticalCrystalData(pores){
  }
  return cells;
 }
-function opticalLine(points,color,opacity){const m=new THREE.LineBasicMaterial({color,transparent:true,opacity,depthWrite:false});const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),m);line.renderOrder=16;return line}
+function opticalLine(points,color,opacity){const m=new THREE.LineBasicMaterial({color,transparent:true,opacity,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false});const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),m);line.renderOrder=16;return line}
+function opticalIrregularPoreGeometry(){
+ const g=new THREE.IcosahedronGeometry(1,2),p=g.attributes.position;
+ for(let i=0;i<p.count;i++){
+  const x=p.getX(i),y=p.getY(i),z=p.getZ(i),j=.86+.17*opticalRand(i*11+51);
+  p.setXYZ(i,x*j*(.92+.10*opticalRand(i*11+52)),y*j*(.76+.16*opticalRand(i*11+53)),z*j*(.90+.13*opticalRand(i*11+54)));
+ }
+ p.needsUpdate=true;g.computeVertexNormals();return g;
+}
+function opticalBackscatterTexture(){
+ const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d'),g=x.createRadialGradient(64,64,0,64,64,60);
+ g.addColorStop(0,'rgba(255,252,237,.88)');g.addColorStop(.25,'rgba(255,251,233,.45)');g.addColorStop(.62,'rgba(246,240,216,.12)');g.addColorStop(1,'rgba(246,240,216,0)');x.fillStyle=g;x.fillRect(0,0,128,128);
+ const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;
+}
 function buildOpticalSpecimen(name){
  const group=new THREE.Group();group.name=name;
- const body=new THREE.Mesh(O.hullGeometry,new THREE.MeshPhysicalMaterial({color:0xe7e4d6,roughness:.36,metalness:0,transparent:true,opacity:.20,transmission:.1,thickness:.17,ior:1.62,side:THREE.DoubleSide,depthWrite:false,envMapIntensity:.5}));body.renderOrder=3;group.add(body);
- const cap=new THREE.Mesh(O.capGeometry,new THREE.MeshPhysicalMaterial({color:0xe9e7dd,roughness:.22,metalness:0,transparent:true,opacity:.61,transmission:.16,thickness:.017,ior:1.62,side:THREE.DoubleSide,depthWrite:false,clearcoat:.22,emissive:0xf1f1e9,emissiveIntensity:.05,envMapIntensity:.7}));cap.name='Relatively intact outer enamel surface';cap.renderOrder=10;group.add(cap);
- const mineral=new THREE.InstancedMesh(O.crystalGeometry,new THREE.MeshStandardMaterial({color:0xe7e4d6,roughness:.47,metalness:0,transparent:true,opacity:.70,envMapIntensity:.38}),O.cells.length);mineral.name='Fine organized mineral microstructure';mineral.instanceMatrix.setUsage(THREE.DynamicDrawUsage);mineral.frustumCulled=false;group.add(mineral);
- const pores=new THREE.InstancedMesh(O.poreGeometry,new THREE.MeshPhysicalMaterial({color:0xbcd3dc,roughness:.28,transparent:true,opacity:.55,depthWrite:false,side:THREE.DoubleSide,envMapIntensity:.4,clearcoat:.18}),O.pores.length);pores.name='Subsurface pores containing water or air';pores.instanceMatrix.setUsage(THREE.DynamicDrawUsage);pores.frustumCulled=false;pores.renderOrder=8;group.add(pores);
+ const body=new THREE.Mesh(O.hullGeometry,new THREE.MeshPhysicalMaterial({color:0xeee9dc,roughness:.30,metalness:0,transparent:true,opacity:.19,transmission:.23,thickness:.22,ior:1.62,side:THREE.DoubleSide,depthWrite:false,clearcoat:.16,clearcoatRoughness:.3,envMapIntensity:.62}));body.renderOrder=3;group.add(body);
+ const cap=new THREE.Mesh(O.capGeometry,new THREE.MeshPhysicalMaterial({color:0xf0ecdf,roughness:.18,metalness:0,transparent:true,opacity:.57,transmission:.22,thickness:.02,ior:1.62,side:THREE.DoubleSide,depthWrite:false,clearcoat:.38,clearcoatRoughness:.24,emissive:0xf3f0e4,emissiveIntensity:.035,envMapIntensity:.78}));cap.name='Relatively intact outer enamel surface';cap.renderOrder=10;group.add(cap);
+ const mineral=new THREE.InstancedMesh(O.crystalGeometry,new THREE.MeshPhysicalMaterial({color:0xf0ecdf,roughness:.43,metalness:0,transparent:true,opacity:.68,transmission:.07,thickness:.018,ior:1.62,envMapIntensity:.44}),O.cells.length);mineral.name='Fine organized hydroxyapatite-like microstructure';mineral.instanceMatrix.setUsage(THREE.DynamicDrawUsage);mineral.frustumCulled=false;group.add(mineral);
+ const pores=new THREE.InstancedMesh(O.poreGeometry,new THREE.MeshPhysicalMaterial({color:0xc2d6dc,roughness:.24,transparent:true,opacity:.46,transmission:.12,thickness:.02,ior:1.33,depthWrite:false,side:THREE.DoubleSide,envMapIntensity:.46,clearcoat:.14}),O.pores.length);pores.name='Irregular subsurface pores containing water or air';pores.instanceMatrix.setUsage(THREE.DynamicDrawUsage);pores.frustumCulled=false;pores.renderOrder=8;group.add(pores);
  const incoming=[new THREE.Vector3(-.105,-.007,.27),new THREE.Vector3(-.105,-.007,-.053)];
  const incident=opticalLine(incoming,0xae945b,.9);incident.name='Identical incoming beam';group.add(incident);
- const forwardPoints=[incoming[1].clone(),new THREE.Vector3(-.10,-.007,-.065),new THREE.Vector3(.045,-.007,-.38)];const forward=opticalLine(forwardPoints,0xb7a26c,.70);group.add(forward);
+ const forwardPoints=[incoming[1].clone(),new THREE.Vector3(-.105,-.007,-.066),new THREE.Vector3(-.098,-.005,-.18),new THREE.Vector3(-.073,-.002,-.29),new THREE.Vector3(.035,.002,-.405)];const forward=opticalLine(forwardPoints,0xcab780,.72);forward.name='Mostly coherent transmitted light';group.add(forward);
+ const deflectedPoints=[incoming[1].clone(),...O.pores.slice(0,7).map((p,i)=>new THREE.Vector3(p.p.x,-.007+(i%2?-.002:.002),p.p.z)),new THREE.Vector3(.052,.004,-.405)];const deflectedCore=opticalLine(deflectedPoints,0xe5d6a7,0);deflectedCore.name='Repeated small deflections across pore interfaces';group.add(deflectedCore);
  const paths=[];
- for(let i=0;i<32;i++){
+ for(let i=0;i<38;i++){
   const hit=O.pores[i%7].p.clone();hit.y=-.007;const a=opticalRand(i+130)*Math.PI*2;
-  const backward=i%5===0,delta=new THREE.Vector3(Math.cos(a)*(.06+.16*opticalRand(i+170)),0,backward?.15+.07*opticalRand(i+160):-.035-.13*opticalRand(i+160));
-  const mid=hit.clone().addScaledVector(delta,.46),end=hit.clone().add(delta);mid.x+=.007*Math.sin(i);
-  const points=[hit,mid,end],line=opticalLine(points,0xb4a074,0);line.name=backward?'Backscattered light':'Light deflected at a pore interface';group.add(line);paths.push({line,points,backward,node:i%7});
+  const backward=i%4===0,rad=.055+.17*opticalRand(i+170),delta=new THREE.Vector3(Math.cos(a)*rad,(opticalRand(i+190)-.5)*.12,backward?.16+.10*opticalRand(i+160):-.04-.15*opticalRand(i+160));
+  const mid=hit.clone().addScaledVector(delta,.42),end=hit.clone().add(delta);mid.x+=.008*Math.sin(i*1.4);mid.y+=.007*Math.cos(i*.9);
+  const points=[hit,mid,end],line=opticalLine(points,backward?0xf3e6bd:0xd8c792,0);line.name=backward?'Back-scattered light returning toward viewer':'Secondary scattered light';group.add(line);paths.push({line,points,backward,node:i%7});
  }
- const pulse=new THREE.Mesh(O.pulseGeometry,new THREE.MeshBasicMaterial({color:0xd4bb7c,transparent:true,opacity:.85,depthWrite:false}));pulse.renderOrder=18;group.add(pulse);
- const specimen={group,body,cap,mineral,pores,incident,forward,paths,pulse,lastLoss:-2,lastAir:-2,loss:0,scatter:0};updateOpticalSpecimen(specimen,0,0,0);return specimen;
+ const hazeGeometry=new THREE.BufferGeometry().setFromPoints(O.pores.slice(7).map(p=>p.p));const haze=new THREE.Points(hazeGeometry,new THREE.PointsMaterial({color:0xfff6d8,size:.0125,sizeAttenuation:true,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));haze.name='Diffuse subsurface back-scattering';haze.renderOrder=15;group.add(haze);
+ const pulse=new THREE.Mesh(O.pulseGeometry,new THREE.MeshBasicMaterial({color:0xf1d993,transparent:true,opacity:.92,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));pulse.renderOrder=18;group.add(pulse);
+ const specimen={group,body,cap,mineral,pores,incident,forward,deflectedCore,paths,haze,pulse,lastLoss:-2,lastAir:-2,loss:0,scatter:0};updateOpticalSpecimen(specimen,0,0,0);return specimen;
 }
 function updateOpticalSpecimen(s,loss,air,scatter){
  const matrix=O.matrix,quaternion=O.crystalQ,scale=O.scale,position=O.position;
@@ -1057,26 +1092,27 @@ function updateOpticalSpecimen(s,loss,air,scatter){
    scale.set(.0036*remaining,.0128*(.94+.06*Math.sin(c.seed))*remaining,.0036*remaining);matrix.compose(c.p,quaternion,scale);s.mineral.setMatrixAt(i,matrix);
   }
   s.mineral.instanceMatrix.needsUpdate=true;
-  for(let i=0;i<O.pores.length;i++){const p=O.pores[i],opening=smooth(p.threshold,p.threshold+.26,loss),r=p.r*opening;position.copy(p.p);scale.set(r,r*.76,r*.90);matrix.compose(position,O.identityQ,scale);s.pores.setMatrixAt(i,matrix)}s.pores.instanceMatrix.needsUpdate=true;
-  s.pores.material.color.set(0xbcd3dc).lerp(O.airColor,air);s.pores.material.opacity=.57-.23*air;s.lastLoss=loss;s.lastAir=air;
+  for(let i=0;i<O.pores.length;i++){const p=O.pores[i],opening=smooth(p.threshold,p.threshold+.26,loss),r=p.r*opening*(.72+.28*loss);position.copy(p.p);scale.set(r,r*.76,r*.90);matrix.compose(position,O.identityQ,scale);s.pores.setMatrixAt(i,matrix)}s.pores.instanceMatrix.needsUpdate=true;
+  s.pores.material.color.set(0xc2d6dc).lerp(O.airColor,air);s.pores.material.opacity=.48-.27*air;s.pores.material.ior=1.33-(.33*air);s.lastLoss=loss;s.lastAir=air;
  }
  s.loss=loss;s.scatter=scatter;
  // Apparent whitening is driven by the scattering state, not by depositing
  // pigment or changing the chemical identity of the remaining mineral.
- s.cap.material.color.set(0xe9e7dd).lerp(O.chalkColor,scatter*.85);s.cap.material.opacity=.61+.39*scatter;s.cap.material.roughness=.22+.68*scatter;s.cap.material.transmission=.16*(1-scatter);s.cap.material.clearcoat=.22*(1-scatter);s.cap.material.emissiveIntensity=.05+.08*scatter;
- s.forward.material.opacity=.70*(1-.82*scatter);
- for(let i=0;i<s.paths.length;i++){const p=s.paths[i],opening=smooth(O.pores[p.node].threshold,O.pores[p.node].threshold+.26,loss);const strength=(i<2?.025:0)+scatter*opening*(p.backward?.31:.22);p.line.material.opacity=strength*(.76+.24*Math.sin(O.clock*1.7+i*.7));}
+ s.cap.material.color.set(0xf0ecdf).lerp(O.chalkColor,scatter*.74);s.cap.material.opacity=.57+.34*scatter;s.cap.material.roughness=.18+.64*scatter;s.cap.material.transmission=.22*(1-.90*scatter);s.cap.material.clearcoat=.38*(1-.88*scatter);s.cap.material.emissiveIntensity=.035+.055*scatter;
+ s.body.material.opacity=.19+.08*scatter;s.body.material.transmission=.23*(1-.58*scatter);
+ s.forward.material.opacity=.72*(1-.76*scatter);s.deflectedCore.material.opacity=.10+.54*scatter;s.haze.material.opacity=.02+.17*scatter;
+ for(let i=0;i<s.paths.length;i++){const p=s.paths[i],opening=smooth(O.pores[p.node].threshold,O.pores[p.node].threshold+.26,loss);const strength=(i<2?.018:0)+scatter*opening*(p.backward?.58:.22);p.line.material.opacity=strength*(.82+.18*Math.sin(O.clock*1.45+i*.63));}
  const t=(O.clock*.24)%1;const start=new THREE.Vector3(-.105,-.008,.27),end=new THREE.Vector3(-.105,-.008,-.055);s.pulse.position.copy(start).lerp(end,t);
 }
 function buildOptics(){
  O.matrix=new THREE.Matrix4();O.scale=new THREE.Vector3();O.position=new THREE.Vector3();O.identityQ=new THREE.Quaternion();O.crystalQ=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0),Math.PI/2);O.airColor=new THREE.Color(0xf0f1e9);O.chalkColor=new THREE.Color(0xfffef7);
- O.pores=opticalPores();O.cells=opticalCrystalData(O.pores);O.hullGeometry=opticalHull();O.capGeometry=opticalHull(true);O.crystalGeometry=new THREE.CylinderGeometry(1,1,1,5);O.poreGeometry=new THREE.SphereGeometry(1,10,7);O.pulseGeometry=new THREE.SphereGeometry(.0038,8,6);
+ O.pores=opticalPores();O.cells=opticalCrystalData(O.pores);O.hullGeometry=opticalHull();O.capGeometry=opticalHull(true);O.crystalGeometry=new THREE.CylinderGeometry(.86,1,1,6,2,false);O.poreGeometry=opticalIrregularPoreGeometry();O.pulseGeometry=new THREE.SphereGeometry(.0044,10,8);
  O.main=buildOpticalSpecimen('Optical microsection at the same enamel site');O.main.group.position.copy(lesionCenter);O.main.group.quaternion.copy(H.basisQ);O.main.group.visible=false;tooth.add(O.main.group);
  O.comparison=new THREE.Group();O.comparison.name='Equal incident light: healthy versus porous enamel';O.comparison.visible=false;scene.add(O.comparison);
  O.healthy=buildOpticalSpecimen('Healthy enamel optical reference');O.healthy.group.position.x=-.49;O.porous=buildOpticalSpecimen('Porous enamel optical comparison');O.porous.group.position.x=.49;O.comparison.add(O.healthy.group,O.porous.group);
  O.fill=new THREE.PointLight(0xf5f7fa,0,7,1.5);scene.add(O.fill);
  O.clinicalLight=new THREE.Group();O.clinicalLight.position.copy(lesionCenter);O.clinicalLight.quaternion.copy(H.basisQ);O.clinicalLight.visible=false;tooth.add(O.clinicalLight);
- for(let i=0;i<7;i++){const line=opticalLine([new THREE.Vector3((i-3)*.015,.04,0),new THREE.Vector3((i-3)*.055,-.007,.25+.02*Math.sin(i))],0xbaa46e,0);O.clinicalLight.add(line);O.backRays.push(line)}
+ for(let i=0;i<9;i++){const line=opticalLine([new THREE.Vector3((i-4)*.012,.025,0),new THREE.Vector3((i-4)*.048,(i%2-.5)*.025,.25+.018*Math.sin(i))],i%3===0?0xf5e7bb:0xd7c492,0);O.clinicalLight.add(line);O.backRays.push(line)}O.clinicalGlow=new THREE.Sprite(new THREE.SpriteMaterial({map:opticalBackscatterTexture(),transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));O.clinicalGlow.position.set(0,.01,.018);O.clinicalGlow.scale.set(.31,.22,1);O.clinicalGlow.renderOrder=20;O.clinicalLight.add(O.clinicalGlow);
  O.source=document.createElement('span');O.source.textContent='Optics: supplied Dental Caries PDF · §3.2, p. 4.';O.source.hidden=true;document.querySelector('.foot .references').append(document.createElement('br'),O.source);
  $('whyWhite').disabled=false;$('whyWhite').onclick=beginOptics;$('returnOptics').onclick=returnOptics;
  $('playOptics').onclick=()=>{if(O.timeline==='playing')O.timeline='paused';else if(O.timeline==='paused')O.timeline='playing';else{O.timeline='playing';O.time=0;O.target=0;O.airTarget=0;O.lastPhase=-1;setOpticsView('micro');setOpticsPhase(0)}opticsPlayUI()};
@@ -1086,9 +1122,9 @@ function buildOptics(){
  $('clinicalOptics').onclick=()=>{O.timeline='idle';O.target=1;setOpticsPhase(5);setOpticsView(O.view==='clinical'?'micro':'clinical');opticsPlayUI()};
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&O.active&&!document.fullscreenElement){e.preventDefault();returnOptics()}});
 }
-function opticsMediumUI(){for(const [id,value] of [['poreWater',0],['poreAir',1]])$(id).setAttribute('aria-pressed',String(O.airTarget===value));$('poreMediumNote').textContent=O.airTarget?'Air replaces water on drying → greater RI mismatch':'Water-filled pores → enamel / water interfaces';}
+function opticsMediumUI(){for(const [id,value] of [['poreWater',0],['poreAir',1]])$(id).setAttribute('aria-pressed',String(O.airTarget===value));$('poreMediumNote').textContent=O.airTarget?'Air replaces water on drying → greater RI mismatch':'Water-filled pores → enamel / water interfaces';$('riPair').textContent=O.airTarget?'1.62 ↔ 1.00':'1.62 ↔ 1.33';const ri=$('opticsPanel').querySelectorAll('.optics-ri>div');ri.forEach(x=>x.classList.remove('ri-active'));if(O.phase>=3){ri[0]?.classList.add('ri-active');ri[O.airTarget?2:1]?.classList.add('ri-active')}}
 function opticsPlayUI(){$('playOpticsText').textContent=O.timeline==='playing'?'Pause animation':O.timeline==='paused'?'Resume animation':O.timeline==='complete'?'Replay animation':'Start demineralization';$('opticsPlaySymbol').textContent=O.timeline==='playing'?'Ⅱ':'▶';$('opticsTrack').hidden=O.timeline==='idle';}
-function setOpticsPhase(phase){if(O.lastPhase===phase)return;O.phase=phase;O.lastPhase=phase;const s=OPTICAL_STAGES[phase];$('opticsTitle').textContent=s.title;$('opticsText').textContent=s.text;$('opticsNumber').textContent=`${String(phase+1).padStart(2,'0')} / 06`;$('opticsCaption').textContent=s.caption;$('opticsEquation').hidden=phase!==5;$('opticsRegion').textContent=phase===0?'Dense mineral structure':'Subsurface mineral loss';renderer.domElement.setAttribute('aria-label',`${s.title}. ${s.text} Optical enamel section. Drag to adjust the view. The mineralization slider changes subsurface porosity and scattering.`);}
+function setOpticsPhase(phase){if(O.lastPhase===phase)return;O.phase=phase;O.lastPhase=phase;const s=OPTICAL_STAGES[phase];$('opticsTitle').textContent=s.title;$('opticsText').textContent=s.text;$('opticsNumber').textContent=`${String(phase+1).padStart(2,'0')} / 06`;$('opticsCaption').textContent=s.caption;$('opticsEquation').hidden=phase!==5;$('opticsRegion').textContent=phase===0?'Dense mineral structure':'Subsurface mineral loss';$('riEnamelTag').style.opacity=phase>=0?1:0;$('riEnamelTag').style.transform='none';$('riWaterTag').style.opacity=phase>=3?(O.airTarget?.28:1):0;$('riAirTag').style.opacity=phase>=3?(O.airTarget?1:.28):0;$('riWaterTag').style.transform=$('riAirTag').style.transform=phase>=3?'none':'translateY(4px)';$('riInterface').classList.toggle('active',phase>=4);opticsMediumUI();renderer.domElement.setAttribute('aria-label',`${s.title}. ${s.text} Optical enamel section. The mineralization slider changes subsurface porosity, refractive-index interfaces, back-scattering and apparent whiteness.`);}
 function opticsUI(active){
  document.body.classList.toggle('optics-view',active);document.body.classList.toggle('histology-view',active);$('clinicalPanel').hidden=active;$('opticsPanel').hidden=!active;$('opticsLabels').hidden=!active;$('opticsFigureCopy').hidden=!active;O.source.hidden=!active;
  $('pageTitle').textContent=active?'Why a White-Spot Lesion Looks White':'Dental Caries Progression';$('pageSubtitle').textContent=active?'An optical change that begins beneath the surface':'From healthy enamel to white-spot lesion and cavitated caries';
@@ -1147,7 +1183,7 @@ function updateOptics(dt){
  if(O.comparison.visible){updateOpticalSpecimen(O.healthy,0,0,0);updateOpticalSpecimen(O.porous,O.loss,O.air,O.scatter)}
  O.backRays.forEach((line,i)=>line.material.opacity=O.scatter*(.20+.07*Math.sin(O.clock*1.2+i)));
  O.fill.position.copy(camera.position).lerp(O.look,.42);O.fill.intensity=O.view==='clinical'?0:1.6;
- $('mineralization').value=String(Math.round(O.target*100));$('mineralization').setAttribute('aria-valuetext',O.target<.02?'Healthy enamel':O.target>.96?'Demineralized enamel':`Illustrative progression ${Math.round(O.target*100)} percent`);$('mineralizationValue').textContent=O.target<.02?'Healthy':O.target>.96?'Demineralized':'Mineral loss';$('opticsFill').style.transform=`scaleX(${O.time/O.duration})`;
+ $('mineralization').value=String(Math.round(O.target*100));$('mineralization').setAttribute('aria-valuetext',O.target<.02?'Healthy enamel':O.target>.96?'White-spot lesion':`Illustrative mineral loss ${Math.round(O.target*100)} percent`);$('mineralizationValue').textContent=O.target<.02?'Healthy':O.target>.96?'White spot':'Mineral loss';$('riPair').textContent=O.air>.5?'1.62 ↔ 1.00':'1.62 ↔ 1.33';$('riWaterTag').style.opacity=O.phase>=3?Math.max(.28,1-O.air):0;$('riAirTag').style.opacity=O.phase>=3?Math.max(.28,O.air):0;$('riInterface').classList.toggle('active',O.phase>=4&&O.view==='micro');$('opticsFill').style.transform=`scaleX(${O.time/O.duration})`;
  tooth.updateMatrixWorld(true);O.comparison.updateMatrixWorld(true);opticsAnnotations();
 }
 
